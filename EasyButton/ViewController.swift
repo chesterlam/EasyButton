@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
+    var EasySound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("That Was Easy Button Sound - free-mp3-streaming.xyz", ofType: "mp3")!)
+    var audioPlayer = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: EasySound)
+        audioPlayer.prepareToPlay()
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,5 +29,9 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func easyButtonPressed(sender: UIButton) {
+        //audioPlayer.currentTime = 0
+        audioPlayer.play()
+    }
 }
 
